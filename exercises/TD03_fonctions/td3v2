@@ -67,3 +67,44 @@ def proportionTemps(temps,proportion):
     return solution
 afficheTemps(proportionTemps((2,0,36,0),0.2))
 #appeler la fonction en échangeant l'ordre des arguments
+
+def jourbissextileparrapportaannee(annee):
+    jourbi = 0
+    for i in range(annee):
+        if (i%4==0 and i%100!=0 or i%400==0): jourbi += 1
+    return jourbi
+def bisextile(jour):
+    nombredannee, jourbi = (jour // 365), 0
+    for i in range(nombredannee):
+        if (i%4==0 and i%100!=0 or i%400==0): jourbi += 1
+    return jourbi
+def tempsEnDate(temps):
+    jourdanslemois = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    jourdanslemoisbisse = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    jourrestant = jourbissextileparrapportaannee(1970) + (365*1970) + temps[0]
+    A, M, J = 0, 0, 0
+    A = (((temps[0] - bisextile(temps[0]))+(1970*365)) // 365)
+    for o in range (A+1): 
+        if(o%4==0 and o%100!=0 or o%400==0):
+            for a in range(12) :
+                if jourrestant <= jourdanslemoisbisse[a] :
+                    J = jourrestant
+                    M = a 
+                else : jourrestant = jourrestant - jourdanslemoisbisse[a]
+        else :
+            for i in range(12) :
+                if jourrestant <= jourdanslemois[i] :
+                    J = jourrestant
+                    M = i 
+                else : jourrestant = jourrestant - jourdanslemois[i]
+    return A, M, J, temps[1], temps[2], temps[3], jourrestant
+
+def afficheDate(date):
+    mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"]
+    print("Il est le", date[2], mois[int(date[1])], date[0], "à", date[3], "heure(s),", date[4], "minute(s) et", date[5], "seconde(s)" )
+
+afficheDate(tempsEnDate(secondeEnTemps(234567892345678)))
+
+
+temps = (2, 0, 0, 0)
+tempsEnDate(temps)

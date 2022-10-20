@@ -1,0 +1,33 @@
+def jourbissextileparrapportaannee(annee):
+    jourbi = 0
+    for i in range(annee):
+        if (i%4==0 and i%100!=0 or i%400==0): jourbi += 1
+    return jourbi
+def bisextile(jour):
+    nombredannee, jourbi = (jour // 365), 0
+    for i in range(nombredannee):
+        if (i%4==0 and i%100!=0 or i%400==0): jourbi += 1
+    return jourbi
+def tempsEnDate(temps):
+    jourdanslemois = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    jourdanslemoisbisse = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    jourrestant = jourbissextileparrapportaannee(1970) + (365*1970) + temps[0]
+    A, M, J = 0, 0, 0
+    A = (((temps[0] - bisextile(temps[0]))+(1970*365)) // 365)
+    for o in range (A+1): 
+        if(o%4==0 and o%100!=0 or o%400==0):
+            for a in range(12) :
+                if jourrestant <= jourdanslemoisbisse[a] :
+                    J = jourrestant
+                    M = a 
+                else : jourrestant = jourrestant - jourdanslemoisbisse[a]
+        else :
+            for i in range(12) :
+                if jourrestant <= jourdanslemois[i] :
+                    J = jourrestant
+                    M = i 
+                else : jourrestant = jourrestant - jourdanslemois[i]
+    return A, M, J, temps[1], temps[2], temps[3], jourrestant
+
+temps = (2, 0, 0, 0)
+tempsEnDate(temps)
