@@ -1,26 +1,19 @@
-#a = int(input("Entrer un nombre entier "))
-#b = int(input("Entrer un nombre entier "))
-#if a > b : print(b, a)
-#else : print(a, b)
+a, b, c = 15, 14, 7
+if a == b == c : 
+    print("Variable égales")
+elif a % b == 0 or b % c == 0 or c % a == 0 : 
+    print("L'une des trois variable en divise une autre")
+else:
+    print("Aucune de ces variable n'en disive une autre")
 
-#import random
-#rand1 = random.randint(0,99)
-#c = int(input("Entrer un nombre à un chiffre"))
-#if c > 1 and rand1 % c == 0: print("Diviseur")
-#print(rand1)
+n = int(input("Entrer un nombre entier pas trop grand stp"))
+liste, somme = [], 0
+for i in range(n):
+    liste.append(int(input("Entrer un nombre entier")))
+for a in range(n):
+    somme += liste[a]
+print(somme)
 
-#a, b, pgcd = int(input("Entrer un nombre")), int(input("Enter un autre nombre")), 0
-#if a > b : a, b = b, a
-#for i in range (1, a + 1) :
-#    if a % i == 0 and b % i == 0 : pgcd = i
-#print(pgcd)
+liste.
 
-#solde, age = 0, int(input("Entrer l'age de l'entrer"))
-#for i in range (age+1): solde += 3*i 
-#solde += 120*age 
-#print(solde)
 
-n = int(input("Vasi batar entre un nombre "))
-résultat = []
-for i in range (11): résultat.append(n-i -1)
-print(résultat)
